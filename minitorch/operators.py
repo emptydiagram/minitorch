@@ -12,7 +12,6 @@ from typing import Callable, Iterable
 
 def mul(x: float, y: float) -> float:
     "$f(x, y) = x * y$"
-    print(f"mul: {x} * {y} = {x*y}")
     return x * y;
 
 
@@ -48,7 +47,7 @@ def max(x: float, y: float) -> float:
 
 def is_close(x: float, y: float) -> float:
     "$f(x) = |x - y| < 1e-2$"
-    return abs(x - y) < 1e-2;
+    return abs(x - y) < 1e-8;
 
 
 def sigmoid(x: float) -> float:
@@ -63,7 +62,8 @@ def sigmoid(x: float) -> float:
 
     for stability.
     """
-    return 1. / (1 + math.exp(-x));
+    return 1. / (1 + math.exp(-x)) if x >= 0 \
+        else math.exp(x) / (1 + math.exp(x))
 
 
 def relu(x: float) -> float:
