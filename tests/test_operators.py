@@ -25,7 +25,7 @@ from minitorch.operators import (
     sum,
 )
 
-from .strategies import assert_close, small_floats
+from .strategies import assert_close, small_floats, very_small_floats
 
 # ## Task 0.1 Basic hypothesis tests.
 
@@ -151,12 +151,12 @@ def test_distribute(a: float, b: float, c: float) -> None:
 
 
 @pytest.mark.task0_2
-@given(small_floats)
+@given(very_small_floats)
 def test_other(x: float) -> None:
     """
     Write a test that ensures some other property holds for your functions.
     """
-    if x >= 0.66:
+    if x >= 0.659:
         r = relu(x)
         s = sigmoid(x)
         assert r > s
